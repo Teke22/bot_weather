@@ -1,3 +1,4 @@
+import os
 import requests
 from telegram import Update
 from telegram.ext import Application, CommandHandler
@@ -9,7 +10,8 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 # Указанные chat_id
-CHAT_IDS = [ "-857374097", "-4697135262", "-4275244227", "-552942093"]  
+CHAT_IDS = ["-857374097", "-4697135262", "-4275244227", "-552942093"]  
+
 # Функция для получения погоды с Open-Meteo для Москвы
 def get_weather_moscow():
     latitude = 55.7522
@@ -153,9 +155,9 @@ async def main():
 
 if __name__ == "__main__":
     try:
-          application = Application.builder().token(
-        os.environ.get("TOKEN")
-    ).build()
+        application = Application.builder().token(
+            os.environ.get("TOKEN")
+        ).build()
         application.add_handler(CommandHandler("weather", weather))
         application.run_polling()
     except Exception as e:
