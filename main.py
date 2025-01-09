@@ -1,16 +1,13 @@
-import os
 import requests
 from telegram import Update
 from telegram.ext import Application, CommandHandler
 import logging
+import os
 
 # Включаем логирование
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-# Указанные chat_id
-CHAT_IDS = ["-857374097", "-4697135262", "-4275244227", "-552942093"]  
 
 # Функция для получения погоды с Open-Meteo для Москвы
 def get_weather_moscow():
@@ -137,12 +134,14 @@ async def weather(update: Update, context):
         "<i>Информация предоставлена Димой</i>"
     )
     
-    # Отправляем сообщение в оба чата
-    for chat_id in CHAT_IDS:
-        try:
-            await context.bot.send_message(chat_id=chat_id, text=message, parse_mode="HTML")
-        except Exception as e:
-            logger.error(f"Ошибка отправки сообщения в чат {chat_id}: {e}")
+    # Получаем chat_id из запроса
+    chat_id = update.message.chat_id
+    
+    try:
+        # Отправляем сообщение в чат, откуда была вызвана команда
+        await context.bot.send_message(chat_id=chat_id, text=message, parse_mode="HTML")
+    except Exception as e:
+        logger.error(f"Ошибка отправки сообщения в чат {chat_id}: {e}")
 
 # Основная функция для запуска бота
 async def main():
@@ -151,13 +150,11 @@ async def main():
     ).build()
     application.add_handler(CommandHandler("weather", weather))  # Команда /weather
     # Запускаем бота с интервалом в 5 секунд
-    await application.run_polling(poll_interval=10)
+    await application.run_polling(poll_interval=5)
 
 if __name__ == "__main__":
     try:
-        application = Application.builder().token(
-            os.environ.get("TOKEN")
-        ).build()
+        application = Application.builder().token("7315724244:AAEH6Wzr_2yI9f5nj5ZLRdiGqgJ3sb7yobM").build()
         application.add_handler(CommandHandler("weather", weather))
         application.run_polling()
     except Exception as e:
