@@ -53,7 +53,7 @@ def get_weather_moscow():
 def get_weather_bryansk():
     latitude = 53.15
     longitude = 34.22
-    url = f'https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,snowfall,pressure_msl,wind_speed_10m'
+    url = f'https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_10m,relative_humidity_2m,apparent_temperature,precipitation,snowfall,pressure_msl,wind_speed_10m'
     
     response = requests.get(url)
     
