@@ -150,7 +150,7 @@ async def main():
     ).build()
     application.add_handler(CommandHandler("weather", weather))  # Команда /weather
     # Запускаем бота без polling, так как запросы будут только по команде
-    await application.run_polling(poll_interval=60)  # Увеличьте время интервала если хотите.
+    await application.run_polling(poll_interval=20)  # Увеличьте время интервала если хотите.
 
 if __name__ == "__main__":
     try:
