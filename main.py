@@ -90,7 +90,7 @@ def get_weather_bryansk():
 def get_weather_chadyr_lunga():
     latitude = 46.0318
     longitude = 28.49
-    url = f'https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,snowfall,pressure_msl,wind_speed_10m'
+    url = f'https://api.open-meteo.com/v1/forecast?latitude=46.0617&longitude=28.8308&hourly=relative_humidity_2m,apparent_temperature,precipitation,snowfall,surface_pressure,wind_speed_10m,temperature_80m&timezone=Europe%2FBerlin'
     
     response = requests.get(url)
     
