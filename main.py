@@ -26,17 +26,17 @@ def get_weather():
             weather_info = ""
             for i in range(3):
                 location = locations[i]
-                current_data = data['current']
+                current_data = data['current'][i]  # Получаем данные для каждой точки
                 
                 # Получаем данные для каждой точки
-                temperature = current_data['temperature_2m'][i]
-                humidity = current_data['relative_humidity_2m'][i]
-                apparent_temp = current_data['apparent_temperature'][i]
-                precipitation = current_data['precipitation'][i]
-                rain = current_data['rain'][i]
-                snowfall = current_data['snowfall'][i]
-                wind_speed = current_data['wind_speed_10m'][i]
-                wind_direction = current_data['wind_direction_10m'][i]
+                temperature = current_data['temperature_2m']
+                humidity = current_data['relative_humidity_2m']
+                apparent_temp = current_data['apparent_temperature']
+                precipitation = current_data['precipitation']
+                rain = current_data['rain']
+                snowfall = current_data['snowfall']
+                wind_speed = current_data['wind_speed_10m']
+                wind_direction = current_data['wind_direction_10m']
                 
                 weather_info += (
                     f"<b>🌍 Погода в {location}:</b>\n"
