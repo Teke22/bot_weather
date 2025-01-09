@@ -98,7 +98,7 @@ def get_weather_chadyr_lunga():
         try:
             data = response.json()
             current_data = data['hourly']
-            temperature = current_data['temperature_2m'][0]
+            temperature = current_data['temperature_10m'][0]
             humidity = current_data['relative_humidity_2m'][0]
             apparent_temp = current_data['apparent_temperature'][0]
             precipitation = current_data['precipitation'][0]
