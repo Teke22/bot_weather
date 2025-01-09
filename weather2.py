@@ -153,7 +153,9 @@ async def main():
 
 if __name__ == "__main__":
     try:
-        application = Application.builder().token("7315724244:AAEH6Wzr_2yI9f5nj5ZLRdiGqgJ3sb7yobM").build()
+          application = Application.builder().token(
+        os.environ.get("TOKEN")
+    ).build()
         application.add_handler(CommandHandler("weather", weather))
         application.run_polling()
     except Exception as e:
