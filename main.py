@@ -149,13 +149,13 @@ async def main():
         os.environ.get("TOKEN")
     ).build()
     application.add_handler(CommandHandler("weather", weather))  # Команда /weather
-    # Запускаем бота с интервалом в 5 секунд
-    await application.run_polling(poll_interval=60)
+    # Запускаем бота без polling, так как запросы будут только по команде
+    await application.run_polling(poll_interval=60)  # Увеличьте время интервала если хотите.
 
 if __name__ == "__main__":
     try:
         application = Application.builder().token("7315724244:AAEH6Wzr_2yI9f5nj5ZLRdiGqgJ3sb7yobM").build()
         application.add_handler(CommandHandler("weather", weather))
-        application.run_polling()
+        application.run_polling(poll_interval=60)  # Будет опрашивать каждую минуту
     except Exception as e:
         logger.error(f"Произошла ошибка: {e}")
